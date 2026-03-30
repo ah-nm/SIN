@@ -762,7 +762,7 @@
 
 <div id="bgm">
   <button class="bgm-btn" id="bgm-prev" title="이전">‹</button>
-  <button class="bgm-btn" id="bgm-play" style="font-size:1.2rem;">▶</button>
+  <button class="bgm-btn" id="bgm-play" style="font-size:1.2rem;">▶&#xFE0E;</button>
   <button class="bgm-btn" id="bgm-next" title="다음">›</button>
 
   <div class="bgm-info">
@@ -787,6 +787,7 @@ document.addEventListener("DOMContentLoaded", () => {
     duration: 1.5,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
+    smoothTouch: true,
   });
 
   lenis.on('scroll', ScrollTrigger.update);
@@ -1078,9 +1079,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function play(){
     const p = audio.play();
-    if(p) p.then(()=>{ isPlaying=true; btnPlay.textContent='⏸'; }).catch(()=>{ isPlaying=false; btnPlay.textContent='▶'; });
+    if(p) p.then(()=>{ isPlaying=true; btnPlay.textContent='⏸\uFE0E'; }).catch(()=>{ isPlaying=false; btnPlay.textContent='▶\uFE0E'; });
   }
-  function pause(){ audio.pause(); isPlaying=false; btnPlay.textContent='▶'; }
+  function pause(){ audio.pause(); isPlaying=false; btnPlay.textContent='▶\uFE0E'; }
 
   btnPlay.addEventListener('click',()=>{
     if(!audio.src || audio.src===window.location.href) { load(); play(); return; }
