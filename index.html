@@ -85,14 +85,6 @@
       z-index: 2; pointer-events: none;
     }
     @media (max-width: 768px) { .layer-top-ceiling { background-image: url('asset/ceiling_mb.png'); height: 40vh; } }
-    
-    .d1 { top: 10%; left: 8%; width: 6vw; min-width: 40px; filter: blur(0px); opacity: 0.7; }
-    .d2 { top: 22%; right: 12%; width: 8vw; min-width: 50px; filter: blur(1px); opacity: 0.6; }
-    .d3 { top: 38%; left: 18%; width: 5vw; min-width: 30px; filter: blur(0px); opacity: 0.8; }
-    .d4 { top: 55%; right: 5%; width: 10vw; min-width: 70px; filter: blur(2px); opacity: 0.5; }
-    .d5 { top: 70%; left: 10%; width: 4vw; min-width: 35px; filter: blur(0px); opacity: 0.7; }
-    .d6 { top: 85%; right: 18%; width: 7vw; min-width: 45px; filter: blur(1px); opacity: 0.6; }
-    .d7 { top: 92%; left: 25%; width: 6vw; min-width: 40px; filter: blur(0px); opacity: 0.8; }
 
     .layer-4-fg {
       position: fixed; top: -5%; left: -5%; width: 110%; height: 110%;
@@ -155,11 +147,6 @@
     }
     @keyframes pl-blink { 0%,100%{opacity:0.2} 50%{opacity:0.8} }
     
-    @keyframes gm-flash {
-      0% { background: rgba(110, 21, 21, 0.5); }
-      100% { background: transparent; }
-    }
-
     .css-diamond { display: inline-block; width: 8px; height: 8px; background: var(--bg); border: 1px solid var(--accent-d); transform: rotate(45deg); }
     
     .ornate-box { 
@@ -193,6 +180,30 @@
     .gothic-divider { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 5rem auto; width: 80%; max-width: 600px; }
     .gothic-divider .line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-s), transparent); position: relative; }
     
+    .canvas-divider-wrap {
+      width: 100%;
+      margin: 8rem auto -34rem auto; 
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    @media(max-width: 768px) {
+      .canvas-divider-wrap {
+        margin: 2rem auto -16rem auto;
+      }
+    }
+
+    .wing-canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+      mix-blend-mode: screen; 
+    }
+
     ruby { ruby-align: center; font-weight: 700; }
     rt { font-family: var(--font-e); font-size: 0.6em; color: var(--accent); letter-spacing: 0.05em; transform: translateY(-2px); font-weight: normal; }
     .drop-cap::first-letter { font-family: var(--font-e); font-size: 4rem; float: left; line-height: 0.8; padding-right: 0.8rem; padding-top: 0.2rem; color: var(--text-main); text-shadow: 0 0 15px rgba(217, 212, 207, 0.2); }
@@ -428,6 +439,10 @@
       </div>
     </section>
 
+    <div class="canvas-divider-wrap gsap-reveal">
+      <canvas class="wing-canvas"></canvas>
+    </div>
+
   <section class="sec" id="lore-1">
     <div class="sec-head gsap-reveal">
       <p class="sec-label">Lore — Venatum</p>
@@ -514,7 +529,7 @@
         <div class="corner-bracket cb-tl"></div><div class="corner-bracket cb-tr"></div>
         <div class="corner-bracket cb-bl"></div><div class="corner-bracket cb-br"></div>
         <p class="manuscript-text drop-cap">
-          우리의 역사는 피와 기적의 연대기임이 분명하니, 지금으로부터 약 삼백 년 전 발생했던 <ruby>제1정화<rt>Prima Purgatio</rt></ruby>를 결코 잊어서는 안 될 것이니라. 당시 신성한 교리를 제멋대로 곡해하고 금지된 진실을 탐구하여 세상을 다시 심연의 <ruby>허력<rt>Vacua</rt></ruby>으로 되돌리려 했던 가증한 이단 무리가 나타났으나, 교단은 지체 없이 정화의 칼날을 휘둘러 그들을 멸함으로써 질서의 순결함을 수호하였도다. 
+          우리의 역사는 피와 기적의 연대기임이 분명하니, 지금으로부터 약 삼백 전 발생했던 <ruby>제1정화<rt>Prima Purgatio</rt></ruby>를 결코 잊어서는 안 될 것이니라. 당시 신성한 교리를 제멋대로 곡해하고 금지된 진실을 탐구하여 세상을 다시 심연의 <ruby>허력<rt>Vacua</rt></ruby>으로 되돌리려 했던 가증한 이단 무리가 나타났으나, 교단은 지체 없이 정화의 칼날을 휘둘러 그들을 멸함으로써 질서의 순결함을 수호하였도다. 
         </p>
         <figure class="inline-figure gsap-reveal">
           <img src="10.jpg" alt="신성화 시대" onerror="this.style.display='none'">
@@ -540,7 +555,7 @@
           <figcaption>Custos Purgationis</figcaption>
         </figure>
         <p class="manuscript-text drop-cap">
-          이리하여 본 서기관은 베나툼의 모든 신민이 이 성스러운 기록을 가슴에 새기고, 성탑이 멈추지 않는 한 우리의 영광 또한 영원할 것임을 굳게 믿으며 필을 멈추노라. 모든 이들에게 성인의 가호가 깃들기를 바라노니, 정화의 비가 내리는 창밖을 보며 교단의 안녕을 위해 기도하라. 베나툼은 결코 무너지지 아니하며, 신성력의 빛은 영원히 꺼지지 아니하리니, 무릇 질서 안에 거하는 자만이 진정한 안식을 얻을 것임이라. 이 모든 것은 성부와 성자와 교단의 절대적인 권위 아래 기록되었으며, 만약 이 진실에 추호의 의문이라도 품거나 성유물의 성스러움을 모독하는 자가 있다면 정화 순찰대의 자비 없는 심판이 그 영혼의 끝까지 뒤쫓아 태워버릴 것임을 엄히 경고하는 바이다.
+          이리하여 본 서기관은 베나툼의 모든 신민이 이 성스러운 기록을 가슴에 새기고, 성탑이 멈추지 않는 한 우리의 영광 또한 영원할 것임을 굳게 믿으며 필을 멈추노라. 모든 이들에게 성인의 가호가 깃들기를 바라노니, 정화의 비가 내리는 창밖을 보며 교단의 안녕을 위해 기도하라. 베나툼은 결코 무너지지 아니하며, 신성력의 빛은 영원히 꺼지지 아니하리니, 무릇 질서 안에 거하는 자만이 진정한 안식을 얻을 파멸될 것임이라. 이 모든 것은 성부와 성자와 교단의 절대적인 권위 아래 기록되었으며, 만약 이 진실에 추호의 의문이라도 품거나 성유물의 성스러움을 모독하는 자가 있다면 정화 순찰대의 자비 없는 심판이 그 영혼의 끝까지 뒤쫓아 태워버릴 것임을 엄히 경고하는 바이다.
         </p>
         <p class="manuscript-text" style="text-align: center; font-family: var(--font-e); font-style: italic; margin-top: 3.5rem; font-size: 1.15rem; color: var(--text-main);">
           아아, 위대한 베나툼이여, 심연을 딛고 일어선 빛의 보루여, 영원무궁히 찬양받을지어다.
@@ -588,9 +603,9 @@
     </div>
   </section>
 
-  <div class="gothic-divider">
-    <div class="line"></div><div class="css-diamond"></div><div class="line"></div>
-  </div>
+    <div class="canvas-divider-wrap gsap-reveal">
+      <canvas class="wing-canvas"></canvas>
+    </div>
 
     <section class="sec" id="characters">
       <div class="sec-head gsap-reveal">
@@ -651,8 +666,9 @@
       </div>
     </section>
 
-    <div class="gothic-divider">
-      <div class="line"></div><div class="css-diamond"></div><div class="line"></div>
+    <!-- [캔버스 삽입 구역 3] Personae ~ Descensus -->
+    <div class="canvas-divider-wrap gsap-reveal">
+      <canvas class="wing-canvas"></canvas>
     </div>
 
     <section class="sec" id="intro-sit">
@@ -702,11 +718,10 @@
       </div>
     </section>
 
-    <div class="gothic-divider">
-      <div class="line"></div><div class="css-diamond"></div><div class="line"></div>
+    <div class="canvas-divider-wrap gsap-reveal">
+      <canvas class="wing-canvas"></canvas>
     </div>
 
-    <!-- GALLERY -->
     <section class="sec" id="gallery">
       <div class="sec-head gsap-reveal">
         <p class="sec-label">Archivum</p>
@@ -736,7 +751,6 @@
 
   </div>
 
-  <!-- [Layer 4] Foreground Vines -->
   <div class="parallax-layer layer-4-fg" id="plx-fg">
     <div class="plx-vine vine-left"></div>
     <div class="plx-vine vine-right"></div>
@@ -785,6 +799,29 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  const WING_CONFIG = {
+    frameCount: 26,
+    pathPrefix: './frames/divider',
+    pathSuffix: '.png',
+    wrapClass: '.canvas-divider-wrap',
+    canvasClass: '.wing-canvas',
+    gap: 0
+  };
+
+  const wingImages = [];
+  let wingsLoaded = 0;
+
+  for (let i = 0; i < WING_CONFIG.frameCount; i++) {
+    const img = new Image();
+    const idx = i.toString().padStart(2, '0');
+    img.src = `${WING_CONFIG.pathPrefix}${idx}${WING_CONFIG.pathSuffix}`;
+    img.onload = () => { 
+      wingsLoaded++; 
+    };
+    wingImages.push(img);
+  }
+
   const TRACKS = [
     { title: 'De Luce et Umbra — Jóhann Jóhannsson',      src: './bgm/track_01.mp3' },
     { title: 'Good Morning, Midnight — Jóhann Jóhannsson',     src: './bgm/track_02.mp3' },
@@ -845,6 +882,53 @@ document.addEventListener("DOMContentLoaded", () => {
            .to("#preloader",       { opacity: 0, duration: 1.5, ease: "power2.inOut" })
            .set("#preloader",      { display: "none" })
            .to("#plx-ceiling",     { yPercent: 0, duration: 2, ease: "power3.out" }, "-=1.2");
+  }
+
+  function initWingCanvases() {
+    const wraps = document.querySelectorAll(WING_CONFIG.wrapClass);
+    
+    wraps.forEach(wrap => {
+      const canvas = wrap.querySelector(WING_CONFIG.canvasClass);
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      canvas.width = 2000 + (WING_CONFIG.gap * 2);
+      canvas.height = 1000;
+
+      const render = (frameIndex) => {
+        const safeIndex = Math.max(0, Math.min(WING_CONFIG.frameCount - 1, frameIndex));
+        const img = wingImages[safeIndex];
+        
+        if (!img || !img.complete || img.naturalWidth === 0) return;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const cx = canvas.width / 2;
+
+        ctx.save();
+        ctx.drawImage(img, cx + WING_CONFIG.gap, 0, 1000, 1000);
+        ctx.restore();
+
+        ctx.save();
+        ctx.scale(-1, 1);
+        ctx.drawImage(img, -(cx - WING_CONFIG.gap), 0, 1000, 1000);
+        ctx.restore();
+      };
+
+      render(25);
+
+      ScrollTrigger.create({
+        trigger: wrap,
+        start: "top 95%",
+        end: "top 40%",
+        scrub: 1,
+        onUpdate: self => {
+          const maxFrame = WING_CONFIG.frameCount - 1;
+          const frameIndex = Math.round((1 - self.progress) * maxFrame);
+          requestAnimationFrame(() => render(frameIndex));
+        }
+      });
+    });
   }
 
   function initScrollAnimations() {
@@ -921,6 +1005,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+
+    initWingCanvases();
   }
 
   let mouseX = 0, mouseY = 0;
