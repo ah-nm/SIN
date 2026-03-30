@@ -204,6 +204,12 @@
       mix-blend-mode: screen; 
     }
 
+    @media(max-width: 768px) {
+      .wing-canvas {
+        width: 130%;
+      }
+    }
+
     ruby { ruby-align: center; font-weight: 700; }
     rt { font-family: var(--font-e); font-size: 0.6em; color: var(--accent); letter-spacing: 0.05em; transform: translateY(-2px); font-weight: normal; }
     .drop-cap::first-letter { font-family: var(--font-e); font-size: 4rem; float: left; line-height: 0.8; padding-right: 0.8rem; padding-top: 0.2rem; color: var(--text-main); text-shadow: 0 0 15px rgba(217, 212, 207, 0.2); }
@@ -422,10 +428,6 @@
   <div class="parallax-layer layer-top-ceiling" id="plx-ceiling"></div>
 
   <div id="main-content" class="parallax-layer">
-    
-    <div class="vertical-label">Annus Sacer 401 — Venatum</div>
-    <div class="vertical-label right">Crypta Prima</div>
-
     <section id="hero">
       <div class="hero-vignette"></div>
       <div class="hero-content gsap-hero">
@@ -745,7 +747,7 @@
 
     <footer>
       <span style="font-family:var(--font-t); font-size:0.65rem; letter-spacing:0.4em; display:block; margin-top:2rem; text-transform:uppercase; color:var(--accent-d);">
-        Devorator Peccati &nbsp;·&nbsp; Annus Sacer 401
+        Devorator Peccati
       </span>
     </footer>
 
