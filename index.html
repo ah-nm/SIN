@@ -214,7 +214,7 @@
     rt { font-family: var(--font-e); font-size: 0.6em; color: var(--accent); letter-spacing: 0.05em; transform: translateY(-2px); font-weight: normal; }
     .drop-cap::first-letter { font-family: var(--font-e); font-size: 4rem; float: left; line-height: 0.8; padding-right: 0.8rem; padding-top: 0.2rem; color: var(--text-main); text-shadow: 0 0 15px rgba(217, 212, 207, 0.2); }
 
-    #main-content { position: relative; z-index: 10; padding-bottom: 100px; }
+    #main-content { position: relative; z-index: 10; }
     
     #hero {
       position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -384,7 +384,13 @@
     .btn-return:hover::before { border-color: #eee9e5; background: #eee9e5; }
     .btn-return:hover::after { transform: scaleY(1); }
 
-    footer { text-align: center; padding: 6rem 2rem calc(54px + 3rem); border-top: 1px solid var(--border); font-family: var(--font-e); font-style: italic; font-size: 0.9rem; color: var(--text-dim); letter-spacing: 0.1em; }
+    .bottom-illust-wrap { width: 100%; pointer-events: none; line-height: 0; display: block; margin: 0; line-height: 0; opacity: 0.6;}
+    .bottom-illust-pc { width: 100%; display: block; }
+    .bottom-illust-mb { width: 120%; display: none; }
+    @media (max-width: 768px) {
+      .bottom-illust-pc { display: none; }
+      .bottom-illust-mb { display: block; }
+    }
     
     #bgm { position: fixed; bottom: 0; left: 0; right: 0; height: 54px; background: rgba(7,6,6,0.95); border-top: 1px solid var(--border); backdrop-filter: blur(15px); z-index: 9500; display: flex; align-items: center; font-family: var(--font-t); }
     .bgm-btn { width: 50px; height: 54px; border: none; background: transparent; color: var(--text-main); font-size: 1rem; cursor: pointer; transition: 0.3s; }
@@ -480,6 +486,10 @@
     <div class="line"></div><div class="css-diamond"></div><div class="line"></div>
   </div>
 
+  <div class="canvas-divider-wrap gsap-reveal">
+    <canvas class="wing-canvas"></canvas>
+  </div>
+
   <section class="sec" id="lore-2">
     <div class="sec-head gsap-reveal">
       <p class="sec-label">Structura Civitatis</p>
@@ -518,6 +528,10 @@
 
   <div class="gothic-divider gsap-reveal">
     <div class="line"></div><div class="css-diamond"></div><div class="line"></div>
+  </div>
+
+  <div class="canvas-divider-wrap gsap-reveal">
+    <canvas class="wing-canvas"></canvas>
   </div>
 
   <section class="sec" id="lore-3">
@@ -568,6 +582,10 @@
 
   <div class="gothic-divider gsap-reveal">
     <div class="line" style="background: linear-gradient(90deg, transparent, var(--accent), transparent);"></div><span style="font-size:1.5rem; color:var(--accent);">✠</span><div class="line" style="background: linear-gradient(90deg, transparent, var(--accent), transparent);"></div>
+  </div>
+
+  <div class="canvas-divider-wrap gsap-reveal">
+    <canvas class="wing-canvas"></canvas>
   </div>
 
   <section class="sec" id="lore-4">
@@ -668,7 +686,6 @@
       </div>
     </section>
 
-    <!-- [캔버스 삽입 구역 3] Personae ~ Descensus -->
     <div class="canvas-divider-wrap gsap-reveal">
       <canvas class="wing-canvas"></canvas>
     </div>
@@ -745,12 +762,10 @@
       </div>
     </section>
 
-    <footer>
-      <span style="font-family:var(--font-t); font-size:0.65rem; letter-spacing:0.4em; display:block; margin-top:2rem; text-transform:uppercase; color:var(--accent-d);">
-        Devorator Peccati
-      </span>
-    </footer>
-
+    <div class="bottom-illust-wrap">
+      <img src="asset/bottom_pc.png" class="bottom-illust-pc" alt="">
+      <img src="asset/bottom_mb.png" class="bottom-illust-mb" alt="">
+    </div>
   </div>
 
   <div class="parallax-layer layer-4-fg" id="plx-fg">
