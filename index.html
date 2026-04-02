@@ -223,7 +223,10 @@
     .hero-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 10%, var(--bg) 95%); pointer-events: none; }
     #hero::after { content: ''; position: absolute; bottom: -25vh; left: 0; right: 0; height: 65vh; background: linear-gradient(to bottom, transparent 0%, var(--bg) 60%); pointer-events: none; z-index: 3; -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%); mask-image: linear-gradient(to bottom, black 50%, transparent 100%);}
     .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; margin-top: 60px; }
-    .hero-title-img { max-width: 100%; width: clamp(350px, 40vw, 700px); margin-bottom: 2rem; filter: drop-shadow(0 0 20px rgba(217, 212, 207, 0.15)); }
+    .hero-title-wrap { position: relative; max-width: 100%; width: clamp(350px, 40vw, 700px); margin-bottom: 2rem; }
+    .hero-title-img { max-width: 100%; width: 100%; filter: drop-shadow(0 0 20px rgba(217, 212, 207, 0.15)); display: block; }
+    .hero-title-normal { position: relative; z-index: 1; transition: opacity 0.3s ease; }
+    .hero-title-invert { position: absolute; top: 0; left: 0; z-index: 2; opacity: 0; transition: opacity 0.3s ease; }
     .hero-phrase { font-family: var(--font-k); font-size: clamp(0.9rem, 2vw, 1.2rem); color: var(--text-dim); margin-bottom: 4rem; max-width: 600px; position: relative; padding: 1rem 0; letter-spacing: 0.1em; text-shadow: 0 2px 10px #000; }
     .hero-phrase::before, .hero-phrase::after { content:''; position: absolute; left: 50%; transform: translateX(-50%); width: 40px; height: 1px; background: var(--accent-d); }
     .hero-phrase::before { top: 0; } .hero-phrase::after { bottom: 0; }
@@ -437,7 +440,10 @@
     <section id="hero">
       <div class="hero-vignette"></div>
       <div class="hero-content gsap-hero">
-        <img src="title.png" alt="Devorator Peccati" class="hero-title-img" onerror="this.style.display='none'">
+        <div class="hero-title-wrap">
+          <img src="title.png" alt="Devorator Peccati" class="hero-title-img hero-title-normal" onerror="this.style.display='none'">
+          <img src="title_invert.png" alt="Devorator Peccati" class="hero-title-img hero-title-invert" onerror="this.style.display='none'">
+        </div>
         <div class="hero-divider"></div>
         <p class="hero-phrase">《죄를 삼키는 자》</p>
       </div>
@@ -1156,6 +1162,23 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.fromTo(truthContainer, { opacity: 0 }, { opacity: 1, duration: 2 });
       }
     });
+  }
+
+  const titleNormal = document.querySelector('.hero-title-normal');
+  const titleInvert = document.querySelector('.hero-title-invert');
+  if (titleNormal && titleInvert) {
+    const updateTitleOnScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const heroH = window.innerHeight;
+      const progress = Math.min(Math.max(scrollY / heroH, 0), 1);
+      titleNormal.style.opacity = 1 - progress;
+      titleInvert.style.opacity = 1;
+
+    };
+    window.addEventListener('scroll', updateTitleOnScroll, { passive: true });
+    if (typeof lenis !== 'undefined') {
+      lenis.on('scroll', updateTitleOnScroll);
+    }
   }
 
   console.log("%c진실을 훔쳐보려 하는가?", "color: #6e1515; font-size: 30px; font-weight: bold; font-family: 'Noto Serif KR', serif; text-shadow: 0 0 10px rgba(110,21,21,0.8);");
